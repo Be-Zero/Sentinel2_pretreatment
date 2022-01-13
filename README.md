@@ -10,61 +10,61 @@
 
 ### 2. 选择数据集：
 
-![1](picture\1.png)
+![1](picture/1.png)
 
 ### 3. 选择地区：
 
-![2](picture\2.png)
+![2](picture/2.png)
 
 * 点击最下方红框中的陕西省即可选择；
 * 该步骤如果搜索不到国内的省份，要么是省份的英文写错了，要么是需要科学上网。
 
 ### 4. 选择日期和云度：
 
-![3](picture\3.png)
+![3](picture/3.png)
 
-![4](picture\4.png)
+![4](picture/4.png)
 
 ### 5. 选择其他参数（可选）：
 
-![5](picture\5.png)
+![5](picture/5.png)
 
 ### 6. 生成结果：
 
-![6](picture\6.png)
+![6](picture/6.png)
 
 ### 7. 选择图像：
 
-![7](picture\7.png)
+![7](picture/7.png)
 
 * 对每一页都做相同操作，可以看到图中的纸箱子 icon 变成了绿色，表示选定；
 
 ### 8. 生成下载链接：
 
-![8](picture\8.png)
+![8](picture/8.png)
 
 ### 9. 安装下载器：
 
-![9](picture\9.png)
+![9](picture/9.png)
 
-![10](picture\10.png)
+![10](picture/10.png)
 
-![11](picture\11.png)
+![11](picture/11.png)
 
 * 要安装该软件，还需要安装 java 10 64bit ，安装方法请自行百度；
 * 配好 java 的环境变量后，就可以安装该软件了；
 
 ### 10. 提交下载链接：
 
-![12](picture\12.png)
+![12](picture/12.png)
 
-![13](picture\13.png)
+![13](picture/13.png)
 
-![14](picture\14.png)
+![14](picture/14.png)
 
-![15](picture\15.png)
+![15](picture/15.png)
 
-![16](picture\16.png)
+![16](picture/16.png)
 
 ### 11. 通过软件下载：
 
@@ -124,7 +124,7 @@
 * SNAP 无脑下一步，需要 Python 环境的用户请注意软件支持的版本；
 * Sen2Cor 加压即可，如果想要在任意文件夹下使用该工具，需要将其添加入系统环境变量；
 
-![17](picture\17.png)
+![17](picture/17.png)
 
 ### 3. 大气校正：
 
@@ -135,7 +135,7 @@
 * 如果需要处理 S2B 星的数据，仅需要将上述操作中的 S2A_MSIL1C* 改为 S2B_MSIL1C* 即可。
 * 等待系统处理即可；
 
-![18](picture\18.png)
+![18](picture/18.png)
 
 ### 4. 导出 TIFF ：
 
@@ -215,9 +215,9 @@
 
 * rgb 图像展示：
 
-  ![19](picture\19.png)
+  ![19](picture/19.png)
 
-  ![20](picture\20.png)
+  ![20](picture/20.png)
 
 # 参考文献
 
