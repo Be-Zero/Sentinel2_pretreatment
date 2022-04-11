@@ -13,7 +13,7 @@ def S2tif(filename):
     # 返回结果是一个list，list中的每个元素是一个tuple，每个tuple中包含了对数据集的路径，元数据等的描述信息
     # tuple中的第一个元素描述的是数据子集的全路径
     ds_list = root_ds.GetSubDatasets()  # 获取子数据集。该数据以数据集形式存储且以子数据集形式组织
-    visual_ds = gdal.Open(ds_list[0][0])  # 打开第1个数据子集的路径。ds_list有4个子集，内部前段是路径，后段是数据信息
+    visual_ds = gdal.Open(ds_list[3][0])  # 打开第1个数据子集的路径。ds_list有4个子集，内部前段是路径，后段是数据信息
     # print(visual_ds)
     # print(f'打开数据为：{ds_list[0][1]}')
     # print(f'投影信息：{visual_ds.GetProjection()}')
@@ -43,7 +43,7 @@ def S2tif(filename):
 
 if __name__ == "__main__":
     from osgeo import gdal
-    SAFE_Path = (r'D:\Documentation\Project\Grassland ecology\data\Sentinel-2\Sentinel-2\2')
+    SAFE_Path = (r'E:\Sentinel-2\2021')
     data_list = glob.glob(SAFE_Path + "\\*.SAFE")
 
     for i in range(len(data_list)):

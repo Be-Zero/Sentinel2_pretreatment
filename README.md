@@ -761,6 +761,6 @@
 
   * 通过改变代码中的子数据集以及 gdalinfo 工具查询的信息可以获取 Sentinel-2 数据集的不同波段。
 
-# 参考文献
+**如果本项目帮助到了你，不如用微信赞助作者一杯奶茶吧~~~**
 
-[1] KilllerQueen. Python脚本批量读取哨兵2号（Sentinel2）影像并另存为Geotiff格式[EB/OL]. 2021-03-10[2022-01-13]. https://blog.csdn.net/KilllerQueen/article/details/114637970.
+![21](picture\21.png)
