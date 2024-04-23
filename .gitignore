@@ -1,3 +1,4 @@
 .idea
 .gitattributes
 data
+venv

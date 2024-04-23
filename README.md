@@ -6,7 +6,9 @@
 
 ### 1. 打开网址：
 
-* [USGS]([EarthExplorer (usgs.gov)](https://earthexplorer.usgs.gov/)) ；
+[USGS]([EarthExplorer (usgs.gov)](https://earthexplorer.usgs.gov/)) ；
+
+> 注：USGS 上的哨兵系列数据已经下架，建议访问[欧空局](https://dataspace.copernicus.eu/)获取数据，后续的数据处理流程是一样的。
 
 ### 2. 选择数据集：
 
@@ -108,7 +110,7 @@
 | 8           | NIR                 | 835.1                   | 145            | 833                     | 133            | 10                     |
 | 8A          | Narrow NIR          | 864.8                   | 33             | 864                     | 32             | 20                     |
 | 9           | Water vapour        | 945.0                   | 26             | 943.2                   | 27             | 60                     |
-| 10          | SWIR – Cirrus       | 1373.5                  | 75             | 1376.9                  | 76             | 60                     |
+| 10          | SWIR – Cirrus      | 1373.5                  | 75             | 1376.9                  | 76             | 60                     |
 | 11          | SWIR                | 1613.7                  | 143            | 1610.4                  | 141            | 20                     |
 | 12          | SWIR                | 2202.4                  | 242            | 2185.7                  | 238            | 20                     |
 
@@ -140,17 +142,11 @@
 ### 4. 导出 TIFF ：
 
 * 创建一个 Python 环境；
-
 * 下载 [gdal ](https://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal) (注意版本须与 python 版本匹配);
-
 * 将其放入你的 python 环境中的 Scripts 文件夹中（推荐使用虚拟环境）；
-
 * 在 Terminal 中激活你的 python （通常是在同一目录下执行 activate.bat 文件）；
-
 * 在 Terminal 中输入：`pip install GDAL-xxxxxx` ，注意是你自己的 GDAL 版本；
-
 * 按需配置其他环境（例如 numpy 等）；
-
 * 使用下述代码进行批处理：
 
   ```python
@@ -160,7 +156,7 @@
   from osgeo import gdal, osr, ogr
   import glob
   # os.environ['CPL_ZIP_ENCODING'] = 'UTF-8'
-  
+
   def S2tif(filename):
       # 打开栅格数据集
       print(filename)
@@ -177,7 +173,7 @@
       # print(f'栅格列数（宽度）：{visual_ds.RasterXSize}')
       # print(f'栅格行数（高度）：{visual_ds.RasterYSize}')
       visual_arr = visual_ds.ReadAsArray()  # 将数据集中的数据读取为ndarray
-  
+
       # 创建.tif文件
       band_count = visual_ds.RasterCount  # 波段数
       xsize = visual_ds.RasterXSize
@@ -187,7 +183,7 @@
       out_tif = driver.Create(out_tif_name, xsize, ysize, band_count, gdal.GDT_Float32)
       out_tif.SetProjection(visual_ds.GetProjection())  # 设置投影坐标
       out_tif.SetGeoTransform(visual_ds.GetGeoTransform())
-  
+
       for index, band in enumerate(visual_arr):
           band = np.array([band])
           for i in range(len(band[:])):
@@ -195,12 +191,12 @@
               out_tif.GetRasterBand(index + 1).WriteArray(band[i])  # 将每个波段的数据写入内存，此时没有写入硬盘
       out_tif.FlushCache()  # 最终将数据写入硬盘
       out_tif = None  # 注意必须关闭tif文件
-  
+
   if __name__ == "__main__":
       from osgeo import gdal
       SAFE_Path = (r'D:\Documentation\Project\Grassland ecology\Sentinel2_pretreatment\data')
       data_list = glob.glob(SAFE_Path + "\\*.SAFE")
-  
+
       for i in range(len(data_list)):
           data_path = data_list[i]
           filename = data_path + "\\MTD_MSIL2A.xml"
@@ -208,17 +204,12 @@
           print(data_path + "-----转tif成功")
       print("----转换结束----")
   ```
-  
 * 代码中第 17 行是取第一个数据子集（band 2、3、4、8），要使用其他 band 须自行更改（第 18 行代码可以查看每个数据子集的信息）；
-
 * 由于读取子数据集时，gdal 工具会将波段进行重组，导致波段的顺序与原数据集（sentinel-2 原始数据集）的波段顺序不同，因此可以通过 `gdalinfo [文件名或子数据集名]` 来获取重组后波段的顺序结构，方法如下：
 
   * 首先，打开并进入你所下载的 gdal 文件夹下的 `Lib\site-packages\osgeo` 目录；
-
   * 该目录下检查是否有一个 `gdalinfo.exe` 程序；
-
   * 在该目录下打开 cmd 命令行；
-
   * 输入 `gdalinfo xxx/xxx.xml` 查看数据信息，下面给出一个具体的例子以供参考：
 
     ```python
@@ -418,7 +409,7 @@
         WAVELENGTH=842
         WAVELENGTH_UNIT=nm
     ```
-    
+
     ```python
     $ gdalinfo SENTINEL2_L2A:S2A_MSIL2A_20210202T032941_N9999_R018_T49SCT_20211210T131028.SAFE/MTD_MSIL2A.xml:20m:EPSG_32649
     ERROR 1: PROJ: proj_create_from_database: Cannot find proj.db
@@ -611,7 +602,7 @@
       Metadata:
         BANDNAME=WVP
     ```
-    
+
     ```python
     $ gdalinfo SENTINEL2_L2A:S2A_MSIL2A_20210202T032941_N9999_R018_T49SCT_20211210T131028.SAFE/MTD_MSIL2A.xml:60m:EPSG_32649
     ERROR 1: PROJ: proj_create_from_database: Cannot find proj.db
@@ -752,7 +743,6 @@
       Metadata:
         BANDNAME=WVP
     ```
-
 * rgb 图像展示：
 
   ![19](picture/19.png)
